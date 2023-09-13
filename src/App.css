@@ -1,0 +1,161 @@
+body {
+  display: flex;
+  justify-content: center;
+  color: #333;
+}
+
+@media (min-width: 1280px) {
+  .App {
+    width: 1270px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+/* MyHeader */
+.MyHeader {
+  padding: 30px;
+
+  border-bottom: 1.5px solid darkcyan;
+
+  display: flex;
+  justify-content: center;
+}
+
+.MyHeader .Board_Title {
+  color: darkcyan;
+
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Home */
+.Home .posts_container {
+}
+
+.Home .post_list {
+  padding: 0;
+}
+
+.Home .post_list .post_container {
+  padding: 25px;
+  list-style: none;
+
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.Home .post_list .post_container:hover {
+  background-color: #fafafa;
+}
+
+.Home .post_list .post_container .post_info_top {
+  display: flex;
+}
+.Home .post_list .post_container .post_info_top .post_id {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background-color: #ececec;
+  font-size: 14px;
+  color: #848484;
+}
+.Home .post_list .post_container .post_info_top .post_title {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.Home .post_list .post_container .post_info_bottom {
+  display: flex;
+}
+
+.Home .post_list .post_container .post_info_bottom p {
+  margin: 0;
+  margin-right: 10px;
+
+  color: #848484;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 14px;
+}
+
+/* MyButton */
+.MyButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: #848484;
+}
+
+.MyButton_default:hover {
+  background-color: rgb(239, 244, 244);
+  color: darkcyan;
+}
+
+/* Post */
+.Post .post_wrapper {
+  /* background-color: pink; */
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Post .post_info {
+  border-bottom: 1px solid #ececec;
+  padding: 30px 30px 15px 30px;
+}
+
+.Post .post_info .post_info_top .post_id {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background-color: #ececec;
+  display: inline-block;
+
+  font-size: 14px;
+  color: #848484;
+}
+
+.Post .post_info .post_info_top .post_title {
+  margin-left: 10px;
+  color: #333;
+  display: inline-block;
+
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.Post .post_info .post_info_bottom p {
+  margin: 0;
+  margin-right: 10px;
+
+  color: #848484;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 14px;
+}
+
+.Post .post_body {
+  padding: 30px;
+  border-bottom: 1px solid #ececec;
+}
+.Post .post_comment {
+  padding: 30px;
+
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 14px;
+}
