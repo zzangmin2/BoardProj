@@ -4,11 +4,15 @@ import MyHeader from "../components/MyHeader";
 import { getStringDate } from "../util/date";
 
 import { useParams } from "react-router-dom";
+import MyButton from "../components/MyButton";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const PostList = useContext(PostStateContext);
   const { postId } = useParams(); //Post/:postId와 동일한 변수명으로 데이터 꺼낼 수 있음.
+  const navigate = useNavigate();
   const [data, setData] = useState({});
+
   useEffect(() => {
     if (PostList.length >= 1) {
       const targetPost = PostList.find(
@@ -22,7 +26,12 @@ const Post = () => {
 
   return (
     <div className="Post">
-      <MyHeader text="게시물" />
+      <MyHeader
+        text="게시물"
+        leftChild={
+          <MyButton text="<" type="header" onClick={() => navigate(-1)} />
+        }
+      />
       <div className="post_wrapper">
         <div className="post_info">
           <div className="post_info_top">
@@ -32,7 +41,7 @@ const Post = () => {
           <div className="post_info_bottom">
             <p className="post_Author">{data.postAuthor}</p>
             {/* <p className="post_date">{getStringDate(data.postDate)}</p> */}
-            <p className="post_date">{data.posDate}</p>
+            {/* <p className="post_date">{data.posDate}</p> */}
           </div>
         </div>
         <div className="post_body">{data.postBody}</div>

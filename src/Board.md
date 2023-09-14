@@ -28,3 +28,13 @@
     - List.map((it)=>{
       return (-----------) _리턴 작성 ~~_
       })
+
+  `Warning: Each child in a list should have a unique "key" prop. `
+
+  - [원인]
+  - map 함수 작성시 key props를 반환 안 함
+
+  -[해결 방법]
+
+  - {postList.map((it, idx) => {
+    return (<li key={idx} ...

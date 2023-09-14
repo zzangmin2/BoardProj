@@ -28,7 +28,7 @@ const Home = () => {
                   <div className="post_id">{it.postId}</div>
                   <div className="post_title">{it.postTitle} </div>
                 </div>
-                <p className="post_body">{it.postBody}</p>
+                <p className="post_body">{it.postBody.substr(0, 50)}</p>
                 <div className="post_info_bottom">
                   <p className="post_auhor">{it.postAuthor}</p>
                   <p className="post_date">
