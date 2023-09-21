@@ -6,7 +6,7 @@ body {
 
 @media (min-width: 1280px) {
   .App {
-    width: 1270px;
+    width: 1280px;
   }
 }
 
@@ -26,11 +26,36 @@ body {
   justify-content: space-between;
 }
 
-.MyHeader .Board_Title {
-  color: darkcyan;
+.MyHeader {
+  padding-top: 30px;
+  padding-bottom: 30px;
 
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid darkcyan;
+}
+
+.MyHeader > div {
+  display: flex;
+}
+
+.MyHeader .Board_Title {
+  width: 50%;
+
+  color: darkcyan;
   font-size: 22px;
   font-weight: bold;
+  justify-content: center;
+}
+
+.MyHeader .leftchild {
+  width: 25%;
+  justify-content: start;
+}
+
+.MyHeader .rightchild {
+  width: 25%;
+  justify-content: flex-end;
 }
 
 /* Home */
@@ -88,6 +113,7 @@ body {
   padding: 0;
   margin: 0;
 
+  display: inline-block;
   cursor: pointer;
 }
 
@@ -98,8 +124,8 @@ body {
   font-size: 14px;
   font-weight: bold;
 
-  background-color: #ececec;
-  color: #848484;
+  background-color: rgb(239, 244, 244);
+  color: darkcyan;
 }
 
 .MyButton_default:hover {
@@ -108,12 +134,13 @@ body {
 }
 
 .MyButton_header {
+  width: 100%;
   background-color: #fff;
   border: none;
-  color: darkcyan;
-  font-size: 25px;
+  color: #848484;
+  font-size: 14px;
 
-  line-height: 30px;
+  /* line-height: 30px; */
 }
 
 /* Post */
@@ -170,4 +197,58 @@ body {
   font-weight: bold;
   display: inline-block;
   line-height: 14px;
+}
+
+/* PostEditor */
+.PostEditor {
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+}
+.PostEditor .text_editor {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 25px;
+}
+.PostEditor .date_created {
+  padding: 10px 0 10px 25px;
+  color: #848484;
+}
+.PostEditor .text_editor .title_input {
+  padding: 20px;
+  margin-bottom: 20px;
+
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  outline: none;
+
+  color: #333;
+}
+
+.PostEditor .text_editor .title_input:focus {
+  border: none;
+  border-bottom: 2px solid darkcyan;
+}
+
+.PostEditor .text_editor .content_input {
+  padding: 20px;
+  height: 21em;
+  border: none;
+  resize: none;
+
+  font-size: 16px;
+  /* background-color: #f6f6f6; */
+  border: none;
+  /* border: 1px solid #ececec; */
+  border-bottom: 1px solid #dbdbdb;
+  /* border-radius: 10px; */
+  color: #333;
+}
+
+.PostEditor .text_editor .content_input:focus {
+  background-color: #fff;
 }

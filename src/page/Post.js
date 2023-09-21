@@ -29,8 +29,13 @@ const Post = () => {
       <MyHeader
         text="게시물"
         leftChild={
-          <MyButton text="<" type="header" onClick={() => navigate(-1)} />
+          <MyButton
+            text="이전으로"
+            type="header"
+            onClick={() => navigate(-1)}
+          />
         }
+        rightChild={" "}
       />
       <div className="post_wrapper">
         <div className="post_info">

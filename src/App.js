@@ -1,20 +1,11 @@
 import "./App.css";
+
+import React, { useRef, useReducer } from "react";
 import Home from "./page/Home";
 import New from "./page/New";
 import Post from "./page/Post";
-import React, { useReducer } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "INIT": {
-      return action.data;
-    }
-    default:
-      return state;
-  }
-};
 
 const List = [
   {
@@ -39,59 +30,62 @@ const List = [
     postAuthor: "글쓴이3",
     postDate: 1693808051251,
   },
-  {
-    postId: 4,
-    postTitle: "방가방가",
-    postBody: "더미데이터4입니다.",
-    postAuthor: "글쓴이4",
-    postDate: 1693808051251,
-  },
-  {
-    postId: 5,
-    postTitle: "방가방가",
-    postBody: "더미데이터5입니다.",
-    postAuthor: "글쓴이5",
-    postDate: 1693808051251,
-  },
-  {
-    postId: 6,
-    postTitle: "방가방가",
-    postBody: "더미데이터6입니다.",
-    postAuthor: "글쓴이6",
-    postDate: 1693808051251,
-  },
-  {
-    postId: 7,
-    postTitle: "방가방가",
-    postBody: "더미데이터7입니다.",
-    postAuthor: "글쓴이7",
-    postDate: 1693808051251,
-  },
-  {
-    postId: 8,
-    postTitle: "방가방가",
-    postBody: "더미데이터8입니다.",
-    postAuthor: "글쓴이8",
-    postDate: 1693808051251,
-  },
 ];
 
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      const newItem = {
+        ...action.data,
+      };
+      newState = [newItem, ...state];
+      break;
+    }
+    default:
+      return newState;
+  }
+  return newState;
+};
+
 export const PostStateContext = React.createContext();
+export const PostDispatchContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, List);
 
+  const postId = useRef(4);
+
+  const onCreate = (postAuthor, postTitle, postBody, postDate) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        postId: postId.current,
+        postTitle: postTitle,
+        postDate: new Date(postDate).getTime(),
+        postBody,
+        postAuthor,
+      },
+    });
+    postId.current += 1;
+  };
+
   return (
     <PostStateContext.Provider value={data}>
-      <BrowserRouter>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/New" element={<New />} />
-            <Route path="/Post/:postId" element={<Post />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <PostDispatchContext.Provider value={{ onCreate }}>
+        <BrowserRouter>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/New" element={<New />} />
+              <Route path="/Post/:postId" element={<Post />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </PostDispatchContext.Provider>
     </PostStateContext.Provider>
   );
 }

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const postList = useContext(PostStateContext);
+  console.log(postList);
 
   const navigate = useNavigate();
 
@@ -16,28 +17,29 @@ const Home = () => {
       <MyHeader text="게시판" />
       <div className="posts_container">
         <ul className="post_list">
-          {postList.map((it, idx) => {
-            console.log(it);
-            return (
-              <li
-                key={idx}
-                className="post_container"
-                onClick={() => navigate(`./Post/${it.postId}`)}
-              >
-                <div className="post_info_top">
-                  <div className="post_id">{it.postId}</div>
-                  <div className="post_title">{it.postTitle} </div>
-                </div>
-                <p className="post_body">{it.postBody.substr(0, 50)}</p>
-                <div className="post_info_bottom">
-                  <p className="post_auhor">{it.postAuthor}</p>
-                  <p className="post_date">
-                    {getStringDate(new Date(it.postDate))}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
+          {postList &&
+            postList.map((it, idx) => {
+              console.log(it);
+              return (
+                <li
+                  key={idx}
+                  className="post_container"
+                  onClick={() => navigate(`./Post/${it.postId}`)}
+                >
+                  <div className="post_info_top">
+                    <div className="post_id">{it.postId}</div>
+                    <div className="post_title">{it.postTitle} </div>
+                  </div>
+                  <p className="post_body">{it.postBody.substr(0, 50)}</p>
+                  <div className="post_info_bottom">
+                    <p className="post_auhor">{it.postAuthor}</p>
+                    <p className="post_date">
+                      {getStringDate(new Date(it.postDate))}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
         </ul>
       </div>
       <MyButton
