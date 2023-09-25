@@ -22,7 +22,7 @@ const Post = () => {
 
       setData(targetPost);
     }
-  }, [postId, PostList]); // data를 의존성 배열에서 제거
+  }, [postId, PostList]);
 
   return (
     <div className="Post">
@@ -45,8 +45,15 @@ const Post = () => {
           </div>
           <div className="post_info_bottom">
             <p className="post_Author">{data.postAuthor}</p>
+
             {/* <p className="post_date">{getStringDate(data.postDate)}</p> */}
             {/* <p className="post_date">{data.posDate}</p> */}
+
+            <MyButton
+              text="수정하기"
+              type="default"
+              onClick={() => navigate(`/Edit/${data.postId}`)}
+            />
           </div>
         </div>
         <div className="post_body">{data.postBody}</div>
