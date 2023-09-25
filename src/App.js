@@ -54,6 +54,10 @@ const reducer = (state, action) => {
       );
       break;
     }
+    case "REMOVE": {
+      newState = state.filter((it) => it.postId !== action.targetId);
+      break;
+    }
     default:
       return newState;
   }
@@ -101,9 +105,16 @@ function App() {
     });
   };
 
+  const onRemove = (targetId) => {
+    dispatch({
+      type: "REMOVE",
+      targetId,
+    });
+  };
+
   return (
     <PostStateContext.Provider value={data}>
-      <PostDispatchContext.Provider value={{ onCreate, onEdit }}>
+      <PostDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
         <BrowserRouter>
           <div className="App">
             <Routes>

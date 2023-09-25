@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import { PostStateContext } from "../App";
 import MyHeader from "../components/MyHeader";
+import { PostDispatchContext } from "../App";
+import { PostStateContext } from "../App";
 import { getStringDate } from "../util/date";
 
 import { useParams } from "react-router-dom";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const PostList = useContext(PostStateContext);
+  const { onRemove } = useContext(PostDispatchContext);
   const { postId } = useParams(); //Post/:postId와 동일한 변수명으로 데이터 꺼낼 수 있음.
   const navigate = useNavigate();
   const [data, setData] = useState({});
@@ -23,6 +25,11 @@ const Post = () => {
       setData(targetPost);
     }
   }, [postId, PostList]);
+
+  const handleRemove = () => {
+    onRemove(data.postId);
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className="Post">
@@ -54,6 +61,7 @@ const Post = () => {
               type="default"
               onClick={() => navigate(`/Edit/${data.postId}`)}
             />
+            <MyButton text="삭제하기" type="default" onClick={handleRemove} />
           </div>
         </div>
         <div className="post_body">{data.postBody}</div>

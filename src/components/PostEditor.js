@@ -20,7 +20,6 @@ const PostEditor = ({ isEdit, originData }) => {
       navigate(-1);
     } else {
       onEdit(originData.postId, "글쓰니", title, content, date);
-      //navigate(`/Post/${originData.postId}`);
       navigate("/");
     }
   };
